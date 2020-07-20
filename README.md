@@ -1,7 +1,7 @@
 <p align="center">
   <img src="./src/assets/logo.png" width="150">
-  <h1 align="center">Laks Castro Portfólio</h1>
-  <p align="center">Este é um repositório que guarda o código do meu portfólio, sinta-se a vontade para usar como quiser! :)</p>
+  <h1 align="center">Portfolio</h1>
+  <p align="center">This a repository that manage portfolio code, feel free to use as way that you want! :)</p>
   <p align="center">
     <img src="https://img.shields.io/badge/type-portfolio-success" alt="Project Type" />
     <img src="https://img.shields.io/badge/bundler-parcel-orange" alt="Repo Type" />
