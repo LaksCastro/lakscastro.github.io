@@ -1,0 +1,34 @@
+{
+  "name": "lakscastro-github-io",
+  "version": "1.0.0",
+  "description": "Freelancer Web Developer",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel public/index.html --out-dir development -p 3000",
+    "pre-deploy": "parcel build public/index.html --out-dir dist --public-url ./",
+    "deploy": "node publish.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LaksCastro/lakscastro.github.io.git"
+  },
+  "keywords": [
+    "freelancer",
+    "web",
+    "developer"
+  ],
+  "author": "Laks Castro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LaksCastro/lakscastro.github.io/issues"
+  },
+  "homepage": "https://lakscastro.github.io",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/runtime-corejs2": "^7.9.2",
+    "gh-pages": "^3.1.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3"
+  }
+}
