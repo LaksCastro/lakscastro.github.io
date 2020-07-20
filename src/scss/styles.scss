@@ -44,15 +44,18 @@ a {
   p {
     max-width: 450px;
   }
+
+  img {
+    border-radius: 50%;
+  }
 }
 
 .header-text {
-  color: #a6a9b6;
+  color: transparentize($color: #a6a9b6, $amount: 0.5);
 }
 
 .main-text {
   color: #f1f1f1;
-  padding: 1rem 0;
 }
 
 .footer-text {
