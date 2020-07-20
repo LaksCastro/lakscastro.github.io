@@ -16,8 +16,10 @@
 </p>
 
 ## What is?
-
 A small portfolio using HTML, CSS and Javascript, [you can check it out here](https://lakscastro.github.io/)
+
+## Animation
+This animation is built in HTML5 Canvas Engine and Factory Functions Pattern!
 
 <br>
 <br>
@@ -30,7 +32,7 @@ A small portfolio using HTML, CSS and Javascript, [you can check it out here](ht
 <p align="center">
   <sub>Copyright © 2020-present, Laks Castro.</sub>
 </p>
-<p align="center">This Portfólio <a href="https://github.com/LaksCastro/endless-gradients/blob/master/LICENSE.md">is MIT licensed 💖</a></p>
+<p align="center">This portfolio <a href="https://github.com/LaksCastro/endless-gradients/blob/master/LICENSE.md">is MIT licensed 💖</a></p>
 <p align="center">
   <img src="./src/assets/logo.png" width="35" />
 </p>
