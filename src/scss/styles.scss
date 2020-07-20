@@ -25,6 +25,10 @@ body {
   align-items: center;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -99,13 +103,13 @@ a {
   background: linear-gradient(to top, rgba(77, 43, 137, 0.5), transparent);
 
   opacity: 0.8;
+}
 
-  @keyframes fire {
-    from {
-      opacity: 0.8;
-    }
-    to {
-      opacity: 0.4;
-    }
+@keyframes fire {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0.4;
   }
 }
