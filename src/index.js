@@ -6,17 +6,18 @@ window.addEventListener("DOMContentLoaded", function () {
   // ==============================IMPORTANTE=================================
   // =========================================================================
 
-  const stars = Array.from({ length: 10 });
+  let stars = Array.from({ length: 10 });
 
   const size = 8;
 
-  function defineStar(brightness, x, y, velocity) {
+  function defineStar(brightness, x, y, velocity, size) {
     const position = { x, y };
 
     return {
       brightness,
       position,
       velocity,
+      size,
     };
   }
 
@@ -97,7 +98,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
         ctx.beginPath();
         ctx.fillStyle = `rgba(77, 43, 137, ${star.brightness / 100})`;
-        ctx.rect(star.position.x, star.position.y, size, size);
+        ctx.rect(star.position.x, star.position.y, star.size, star.size);
         ctx.fill();
       }
       updateStars();
@@ -109,6 +110,11 @@ window.addEventListener("DOMContentLoaded", function () {
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
         if (star === undefined) {
+          if (stars.length > 10) {
+            stars = stars.filter((el) => !!el);
+            return;
+          }
+
           const randomX = randomInt(0, 1) === 1;
 
           const velocity = randomInt(1, 8);
@@ -118,14 +124,16 @@ window.addEventListener("DOMContentLoaded", function () {
               randomInt(80, 100),
               randomInt(0, constraints.width),
               constraints.height,
-              velocity
+              velocity,
+              randomInt(6, 12)
             );
           } else {
             stars[i] = defineStar(
               100,
               constraints.width,
               randomInt(0, constraints.height),
-              velocity
+              velocity,
+              randomInt(6, 12)
             );
           }
         } else {
@@ -136,14 +144,17 @@ window.addEventListener("DOMContentLoaded", function () {
 
           const newBrightness = brightness - randomInt(100, 1000) / 1000;
 
-          if (x + size < 0 || y + size < 0) {
+          const newSize = star.size - 0.05;
+
+          if (x + star.size < 0 || y + star.size < 0 || newSize <= 0) {
             stars[i] = undefined;
           } else {
             stars[i] = defineStar(
               newBrightness,
               x + -star.velocity / 3,
               y + -star.velocity,
-              star.velocity
+              star.velocity,
+              newSize
             );
           }
         }
@@ -178,4 +189,10 @@ window.addEventListener("DOMContentLoaded", function () {
   background.start();
 
   window.onresize = () => Canvas("background").define();
+
+  window.onpointerdown = (e) => {
+    stars.push(
+      defineStar(100, e.clientX, e.clientY, randomInt(1, 8), randomInt(6, 12))
+    );
+  };
 });
