@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/assets/logo.svg" width="150">
+  <img src="./src/assets/logo.png" width="150">
   <h1 align="center">Laks Castro Portfólio</h1>
   <p align="center">Este é um repositório que guarda o código do meu portfólio, sinta-se a vontade para usar como quiser! :)</p>
   <p align="center">
