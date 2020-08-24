@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
   enableBackground("#a", 12, innerWidth / 50);
   enableBackground("#b", 26, 2);
   enableBackground("#c", 4, innerWidth / 20);
+  fetchData();
 });
 
 function enableBackground(selector, size, maxCount) {
@@ -29,4 +30,9 @@ function enableBackground(selector, size, maxCount) {
 
   const animation = Animation.apply(context);
   animation.start();
+}
+
+async function fetchData() {
+  // const response = await fetch("https://raw.githubusercontent.com/LaksCastro/lakscastro.github.io/develop/metadata.json");
+  // const data = await response.json();
 }
