@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
   enableBackground("#a", 12, innerWidth / 50);
   enableBackground("#b", 26, 2);
   enableBackground("#c", 4, innerWidth / 20);
+
   fetchData();
 });
 
@@ -33,6 +34,24 @@ function enableBackground(selector, size, maxCount) {
 }
 
 async function fetchData() {
-  // const response = await fetch("https://raw.githubusercontent.com/LaksCastro/lakscastro.github.io/develop/metadata.json");
-  // const data = await response.json();
+  const repo = "lakscastro.github.io";
+  const username = "LaksCastro";
+
+  const endpoint = `https://raw.githubusercontent.com/${username}/${repo}/develop/metadata.json`;
+
+  const response = await fetch(endpoint);
+
+  const data = await response.json();
+
+  const headerText = document.querySelector(".header-text");
+  const mainText = document.querySelector(".main-text");
+  const footerText = document.querySelector(".footer-text");
+  const loading = document.querySelector(".loading");
+
+  headerText.textContent = data.ocupation;
+  mainText.textContent = data.title;
+  footerText.textContent = data.bio;
+
+  loading.classList.remove("visible");
+  loading.classList.add("hidden");
 }
