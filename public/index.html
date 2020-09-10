@@ -41,7 +41,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../src/scss/styles.scss">
 
   <title>Freelancer Web Developer | LaksCastro</title>
@@ -50,9 +50,13 @@
 <body>
   <div class="loading visible"></div>
   <main class="content">
-    <img width="40"
-      src="https://avatars0.githubusercontent.com/u/51419598?s=460&u=3a68bcbc229ea5925baf1bd3ff306adac0787d39&v=4"
-      alt="Github Profile">
+    <div class="header-photo">
+      <img width="40"
+        src="https://avatars0.githubusercontent.com/u/51419598?s=460&u=3a68bcbc229ea5925baf1bd3ff306adac0787d39&v=4"
+        alt="Github Profile">
+      <img class="song-icon" src="../src/assets/song.svg" alt="Music Icon">
+      <p class="song-label">Playing - PinOut, The After Life</p>
+    </div>
     <p class="header-text"></p>
     <h1 class="main-text"></h1>
     <p class="footer-text"></p>
@@ -68,6 +72,7 @@
   <canvas class="canvas" id="b"></canvas>
   <canvas class="canvas" id="c"></canvas>
   <span id="fire"></span>
+  <audio loop autoplay controls="false" src="../src/assets/The Afterlife - PinOut OST.mp3"></audio>
 
   <script src="../src/index.js"></script>
 </body>
