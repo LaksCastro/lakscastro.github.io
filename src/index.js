@@ -8,6 +8,8 @@ import Stars from "./components/stars";
 import { hexToRgb, isRgb, isRgba } from "./utils";
 
 window.addEventListener("DOMContentLoaded", function () {
+  window.onclick = () => document.querySelector("audio").play();
+  
   const { innerWidth } = window;
 
   fetchData();
