@@ -5,6 +5,8 @@ import Constants from "./components/constants";
 import StateManager from "./components/stateManager";
 import Stars from "./components/stars";
 
+import { hexToRgb, isRgb, isRgba } from "./utils"
+
 window.addEventListener("DOMContentLoaded", function () {
   const { innerWidth } = window;
 
@@ -30,7 +32,7 @@ async function fetchData() {
   mainText.textContent = data.title;
   footerText.textContent = data.bio;
 
-  setFireColor();
+  setFireColor(data.particles.color);
   enableBackground("#a", 12, innerWidth / 50, data.particles.color);
   enableBackground("#b", 26, 2, data.particles.color);
   enableBackground("#c", 4, innerWidth / 20, data.particles.color);
@@ -40,9 +42,25 @@ async function fetchData() {
 }
 
 function setFireColor(color){
-  const fire = document.getElementById("color");
+  const defaultAlpha = 0.5;
 
-  fire.style.background = `linear-gradient(to top, ${color}, transparent)`;
+  function getRgbaFromRgb(rgb){
+    console.log(rgb.replace(/[()rgb]/g, ""))
+    
+    const [r, g, b] = rgb.replace(/[()rgb]/g, "").split(",");
+
+    return `rgba(${r}, ${g}, ${b}, ${defaultAlpha})`;
+  }
+  
+  const finalColor = isRgba(color) ? color : isRgb(color) ? getRgbaFromRgb(color) : (() => {
+    const parsed = hexToRgb(color);
+
+    return getRgbaFromRgb(`rgb(${hex.parsed.r}, ${parsed.g}, ${parsed.b})`);
+  })();
+
+  const fire = document.getElementById("fire");
+
+  fire.style.background = `linear-gradient(to top, ${finalColor}, transparent)`;
 }
 
 function enableBackground(selector, size, maxCount, color) {
