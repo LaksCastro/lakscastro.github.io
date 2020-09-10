@@ -1,5 +1,8 @@
 {
   "ocupation": "Frontend Freelancer",
   "title": "LaksCastro, Web Developer",
-  "bio": "Comecei a criar algumas coisas por diversão e entretenimento, e hoje é minha profissão."
+  "bio": "Comecei a criar algumas coisas por diversão e entretenimento, e hoje é minha profissão.",
+  "particles": {
+    "color": "#ff0000"
+  }
 }

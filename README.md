@@ -7,8 +7,6 @@
     <img src="https://img.shields.io/badge/bundler-parcel-orange" alt="Repo Type" />
     <img src="https://img.shields.io/badge/language-javascript-yellow" alt="Repo Main Language" />
     <img src="https://img.shields.io/badge/platform-web-orange" alt="Project Platform" />
-
-
   </p>
   <p align="center">
     <a href="https://www.linkedin.com/in/lakscastro" target="_blank">

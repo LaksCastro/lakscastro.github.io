@@ -15,24 +15,6 @@ window.addEventListener("DOMContentLoaded", function () {
   fetchData();
 });
 
-function enableBackground(selector, size, maxCount) {
-  let context;
-
-  const stateManager = StateManager();
-  stateManager.createInstance("viewport", Viewport(selector));
-  stateManager.createInstance("constants", Constants(size, maxCount));
-
-  context = stateManager;
-
-  stateManager.createInstance("canvas", Canvas.apply(context, [selector]));
-  stateManager.createInstance("stars", Stars.apply(context));
-
-  context = stateManager;
-
-  const animation = Animation.apply(context);
-  animation.start();
-}
-
 async function fetchData() {
   const repo = "lakscastro.github.io";
   const username = "LaksCastro";
@@ -54,4 +36,22 @@ async function fetchData() {
 
   loading.classList.remove("visible");
   loading.classList.add("hidden");
+}
+
+function enableBackground(selector, size, maxCount) {
+  let context;
+
+  const stateManager = StateManager();
+  stateManager.createInstance("viewport", Viewport(selector));
+  stateManager.createInstance("constants", Constants(size, maxCount));
+
+  context = stateManager;
+
+  stateManager.createInstance("canvas", Canvas.apply(context, [selector]));
+  stateManager.createInstance("stars", Stars.apply(context));
+
+  context = stateManager;
+
+  const animation = Animation.apply(context);
+  animation.start();
 }
