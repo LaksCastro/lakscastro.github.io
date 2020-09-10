@@ -1,8 +1,9 @@
-export default function Constants(size, maxCount) {
+export default function Constants(size, maxCount, color) {
   function get() {
     return {
       size,
       maxCount,
+      color
     };
   }
 

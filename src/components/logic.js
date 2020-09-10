@@ -4,6 +4,7 @@ export default function Logic() {
   const stateManager = this;
 
   const constants = stateManager.getInstance("constants");
+  const particleColor = constants.get().get().color;
 
   function init() {
     updateStars();
@@ -25,7 +26,8 @@ export default function Logic() {
 
       ctx.beginPath();
 
-      ctx.fillStyle = `rgba(208, 72, 12, ${star.brightness / 100})`;
+      ctx.fillStyle = particleColor; 
+      ctx.globalAlpha = star.brightness / 100;
       ctx.rect(star.position.x, star.position.y, star.size, star.size);
 
       ctx.fill();

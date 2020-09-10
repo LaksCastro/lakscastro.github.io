@@ -8,10 +8,6 @@ import Stars from "./components/stars";
 window.addEventListener("DOMContentLoaded", function () {
   const { innerWidth } = window;
 
-  enableBackground("#a", 12, innerWidth / 50);
-  enableBackground("#b", 26, 2);
-  enableBackground("#c", 4, innerWidth / 20);
-
   fetchData();
 });
 
@@ -34,16 +30,20 @@ async function fetchData() {
   mainText.textContent = data.title;
   footerText.textContent = data.bio;
 
+  enableBackground("#a", 12, innerWidth / 50, data.particles.color);
+  enableBackground("#b", 26, 2, data.particles.color);
+  enableBackground("#c", 4, innerWidth / 20, data.particles.color);
+
   loading.classList.remove("visible");
   loading.classList.add("hidden");
 }
 
-function enableBackground(selector, size, maxCount) {
+function enableBackground(selector, size, maxCount, color) {
   let context;
 
   const stateManager = StateManager();
   stateManager.createInstance("viewport", Viewport(selector));
-  stateManager.createInstance("constants", Constants(size, maxCount));
+  stateManager.createInstance("constants", Constants(size, maxCount, color));
 
   context = stateManager;
 
