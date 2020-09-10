@@ -3,3 +3,5 @@ node_modules
 development
 production
 dist
+.env*
+!.env.example
