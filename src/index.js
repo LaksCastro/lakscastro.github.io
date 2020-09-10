@@ -55,7 +55,7 @@ function setFireColor(color){
   const finalColor = isRgba(color) ? color : isRgb(color) ? getRgbaFromRgb(color) : (() => {
     const parsed = hexToRgb(color);
 
-    return getRgbaFromRgb(`rgb(${hex.parsed.r}, ${parsed.g}, ${parsed.b})`);
+    return getRgbaFromRgb(`rgb(${parsed.parsed.r}, ${parsed.g}, ${parsed.b})`);
   })();
 
   const fire = document.getElementById("fire");
