@@ -5,7 +5,7 @@ import Constants from "./components/constants";
 import StateManager from "./components/stateManager";
 import Stars from "./components/stars";
 
-import { hexToRgb, isRgb, isRgba } from "./utils"
+import { hexToRgb, isRgb, isRgba } from "./utils";
 
 window.addEventListener("DOMContentLoaded", function () {
   const { innerWidth } = window;
@@ -41,22 +41,26 @@ async function fetchData() {
   loading.classList.add("hidden");
 }
 
-function setFireColor(color){
+function setFireColor(color) {
   const defaultAlpha = 0.5;
 
-  function getRgbaFromRgb(rgb){
-    console.log(rgb.replace(/[()rgb]/g, ""))
-    
+  function getRgbaFromRgb(rgb) {
+    console.log(rgb.replace(/[()rgb]/g, ""));
+
     const [r, g, b] = rgb.replace(/[()rgb]/g, "").split(",");
 
     return `rgba(${r}, ${g}, ${b}, ${defaultAlpha})`;
   }
-  
-  const finalColor = isRgba(color) ? color : isRgb(color) ? getRgbaFromRgb(color) : (() => {
-    const parsed = hexToRgb(color);
 
-    return getRgbaFromRgb(`rgb(${parsed.r}, ${parsed.g}, ${parsed.b})`);
-  })();
+  const finalColor = isRgba(color)
+    ? color
+    : isRgb(color)
+    ? getRgbaFromRgb(color)
+    : (() => {
+        const parsed = hexToRgb(color);
+
+        return getRgbaFromRgb(`rgb(${parsed.r}, ${parsed.g}, ${parsed.b})`);
+      })();
 
   const fire = document.getElementById("fire");
 
