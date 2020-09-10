@@ -30,12 +30,19 @@ async function fetchData() {
   mainText.textContent = data.title;
   footerText.textContent = data.bio;
 
+  setFireColor();
   enableBackground("#a", 12, innerWidth / 50, data.particles.color);
   enableBackground("#b", 26, 2, data.particles.color);
   enableBackground("#c", 4, innerWidth / 20, data.particles.color);
 
   loading.classList.remove("visible");
   loading.classList.add("hidden");
+}
+
+function setFireColor(color){
+  const fire = document.getElementById("color");
+
+  fire.style.background = `linear-gradient(to top, ${color}, transparent)`;
 }
 
 function enableBackground(selector, size, maxCount, color) {
