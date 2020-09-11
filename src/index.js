@@ -5,17 +5,17 @@ import Constants from "./components/constants";
 import StateManager from "./components/stateManager";
 import Stars from "./components/stars";
 
-import { hexToRgb, isRgb, isRgba } from "./utils";
+import * as utils from "./components/utils";
 
 window.addEventListener("DOMContentLoaded", function () {
   window.onclick = () => document.querySelector("audio").play();
-  
-  const { innerWidth } = window;
 
   fetchData();
 });
 
 async function fetchData() {
+  const { innerWidth } = window;
+
   const repo = "lakscastro.github.io";
   const username = "LaksCastro";
 
@@ -34,39 +34,78 @@ async function fetchData() {
   mainText.textContent = data.title;
   footerText.textContent = data.bio;
 
-  setFireColor(data.particles.color);
-  enableBackground("#a", 12, innerWidth / 50, data.particles.color);
-  enableBackground("#b", 26, 2, data.particles.color);
-  enableBackground("#c", 4, innerWidth / 20, data.particles.color);
+  const particlesColor = data.particles.color;
+
+  setFireColor(particlesColor);
+  setCssVariables(particlesColor);
+
+  enableBackground("#a", 12, innerWidth / 50, particlesColor);
+  enableBackground("#b", 26, 2, particlesColor);
+  enableBackground("#c", 4, innerWidth / 20, particlesColor);
 
   loading.classList.remove("visible");
   loading.classList.add("hidden");
 }
 
-function setFireColor(color) {
-  const defaultAlpha = 0.5;
-
+function getRgbaFromAny(color, alpha) {
   function getRgbaFromRgb(rgb) {
-    console.log(rgb.replace(/[()rgb]/g, ""));
+    const { r, g, b } = utils.splitRgbColors(rgb);
 
-    const [r, g, b] = rgb.replace(/[()rgb]/g, "").split(",");
-
-    return `rgba(${r}, ${g}, ${b}, ${defaultAlpha})`;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
-  const finalColor = isRgba(color)
+  const result = utils.isRgba(color)
     ? color
-    : isRgb(color)
+    : utils.isRgb(color)
     ? getRgbaFromRgb(color)
     : (() => {
-        const parsed = hexToRgb(color);
+        const parsed = utils.hexToRgb(color);
 
         return getRgbaFromRgb(`rgb(${parsed.r}, ${parsed.g}, ${parsed.b})`);
       })();
 
+  return result;
+}
+
+function setFireColor(color) {
+  const defaultAlpha = 0.5;
+
+  const finalColor = getRgbaFromAny(color, defaultAlpha);
+
   const fire = document.getElementById("fire");
 
   fire.style.background = `linear-gradient(to top, ${finalColor}, transparent)`;
+}
+
+function setCssVariables(color) {
+  const rgb =
+    utils.isRgba(color) || utils.isRgb(color)
+      ? utils.splitRgbColors(color)
+      : (() => {
+          const parsed = utils.hexToRgb(color);
+
+          return parsed;
+        })();
+
+  const hsl = utils.rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+  const titleColor = { ...hsl, l: 90 };
+  const textColor = { ...hsl, l: 85 };
+
+  const newRgb = utils.hslToRgb(hsl.h, hsl.s, 85);
+
+  document.documentElement.style.setProperty(
+    "--title-color",
+    `hsl(${titleColor.h}, ${titleColor.s}%, ${titleColor.l}%)`
+  );
+  document.documentElement.style.setProperty(
+    "--text-color",
+    `hsl(${textColor.h}, ${textColor.s}%, ${textColor.l}%)`
+  );
+  document.documentElement.style.setProperty(
+    "--light-text-color",
+    `rgba(${newRgb.r}, ${newRgb.g}, ${newRgb.b}, 0.5)`
+  );
 }
 
 function enableBackground(selector, size, maxCount, color) {

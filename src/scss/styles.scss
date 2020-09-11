@@ -6,7 +6,7 @@
   outline: none;
   -webkit-tap-highlight-color: transparent;
   list-style: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 audio {
@@ -21,7 +21,6 @@ body {
 
 body {
   background: #191819;
-  color: #fff;
 
   display: flex;
   align-items: center;
@@ -39,12 +38,18 @@ a {
 .header-photo {
   display: flex;
   align-items: center;
+  p {
+    animation: fire 1s ease-in-out 0s infinite alternate;
+  }
 
-  .song-icon {
-    color: #fff;
-    fill: #fff;
-    align-self: end;
-    margin: 0 10px 0 10px;
+  svg {
+    margin: 0 10px 0 20px;
+
+    animation: fire 1s ease-in-out 0s infinite alternate;
+
+    path {
+      fill: var(--light-text-color);
+    }
   }
 }
 
@@ -57,23 +62,26 @@ a {
 
   p {
     max-width: 450px;
+    color: var(--light-text-color);
   }
-
   img {
     border-radius: 50%;
   }
 }
 
 .header-text {
-  color: transparentize($color: #a6a9b6, $amount: 0.5);
+  margin: 2rem 0 0 0;
+  max-width: 450px;
+  color: var(--text-color);
 }
 
 .main-text {
-  color: #f1f1f1;
+  color: var(--title-color);
 }
 
 .footer-text {
-  color: #a6a9b6;
+  margin-top: 0.5rem;
+  color: var(--text-color);
 }
 
 .social-links {
@@ -83,6 +91,7 @@ a {
   flex-wrap: wrap;
 
   * {
+    color: var(--text-color);
     text-align: center;
     margin-right: 16px;
     margin-bottom: 4px;

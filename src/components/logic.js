@@ -1,4 +1,4 @@
-import { randomInt } from "./utils";
+import * as utils from "./utils";
 
 export default function Logic() {
   const stateManager = this;
@@ -26,8 +26,16 @@ export default function Logic() {
 
       ctx.beginPath();
 
-      ctx.fillStyle = particleColor; 
-      ctx.globalAlpha = star.brightness / 100;
+      const fill = (() => {
+        const rgb =
+          utils.isRgba(particleColor) || utils.isRgb(particleColor)
+            ? utils.splitRgbColors(particleColor)
+            : utils.hexToRgb(particleColor);
+
+        return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${star.brightness / 100})`;
+      })();
+
+      ctx.fillStyle = fill;
       ctx.rect(star.position.x, star.position.y, star.size, star.size);
 
       ctx.fill();
@@ -57,9 +65,9 @@ export default function Logic() {
           return;
         }
 
-        const randomX = randomInt(0, 10) <= 9;
+        const randomX = utils.randomInt(0, 10) <= 9;
 
-        const velocity = randomInt(1, 8);
+        const velocity = utils.randomInt(1, 8);
 
         if (randomX) {
           stars
@@ -69,8 +77,8 @@ export default function Logic() {
               stars
                 .get()
                 .create(
-                  randomInt(80, 100),
-                  randomInt(0, constraints.width),
+                  utils.randomInt(80, 100),
+                  utils.randomInt(0, constraints.width),
                   constraints.height,
                   velocity
                 )
@@ -83,9 +91,9 @@ export default function Logic() {
               stars
                 .get()
                 .create(
-                  randomInt(80, 100),
+                  utils.randomInt(80, 100),
                   constraints.width,
-                  randomInt(0, constraints.height),
+                  utils.randomInt(0, constraints.height),
                   velocity
                 )
             );
@@ -96,9 +104,9 @@ export default function Logic() {
           brightness,
         } = star;
 
-        const newBrightness = brightness - randomInt(100, 1000) / 1000;
+        const newBrightness = brightness - utils.randomInt(100, 1000) / 1000;
 
-        const newSize = star.size - randomInt(5, 10) / 100;
+        const newSize = star.size - utils.randomInt(5, 10) / 100;
 
         if (x + star.size < 0 || y + star.size < 0 || newSize <= 0) {
           stars.get().set(i, undefined);
