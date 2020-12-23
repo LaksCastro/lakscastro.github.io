@@ -24,21 +24,39 @@ export default function Logic() {
     for (const star of stars.get().get()) {
       if (!star) continue;
 
-      ctx.beginPath();
+      const rgb =
+        utils.isRgba(particleColor) || utils.isRgb(particleColor)
+          ? utils.splitRgbColors(particleColor)
+          : utils.hexToRgb(particleColor);
 
-      const fill = (() => {
-        const rgb =
-          utils.isRgba(particleColor) || utils.isRgb(particleColor)
-            ? utils.splitRgbColors(particleColor)
-            : utils.hexToRgb(particleColor);
+      const colorWith = (opacity) =>
+        `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${
+          (star.brightness / 100) * opacity
+        })`;
 
-        return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${star.brightness / 100})`;
-      })();
+      const shadowLength = 1;
+      const gradualBrightnessLost = 0.2;
+      const shadowPositionLost = 10;
 
-      ctx.fillStyle = fill;
-      ctx.rect(star.position.x, star.position.y, star.size, star.size);
+      const fills = Array.from({ length: shadowLength }).map((_, i) =>
+        colorWith(1 - i * gradualBrightnessLost)
+      );
 
-      ctx.fill();
+      fills.forEach((fill, i) => {
+        ctx.beginPath();
+
+        const lost = i * shadowPositionLost;
+
+        ctx.fillStyle = fill;
+        ctx.rect(
+          star.position.x + lost,
+          star.position.y + lost,
+          star.size,
+          star.size
+        );
+
+        ctx.fill();
+      });
     }
   }
 
