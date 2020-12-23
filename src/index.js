@@ -52,6 +52,7 @@ async function fetchData() {
 function setMusic(song) {
   const songName = song.name;
   const songFile = song.file;
+  const songUrl = song.url;
 
   const songPath =
     "https://github.com/LaksCastro/lakscastro.github.io/raw/develop/src/assets/music/";
@@ -60,6 +61,7 @@ function setMusic(song) {
   const songLabel = document.querySelector(".song-label");
 
   audioPlayer.setAttribute("src", songPath + songFile);
+  songLabel.setAttribute("href", songUrl);
 
   songLabel.innerText += songName;
 }
