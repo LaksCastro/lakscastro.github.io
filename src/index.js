@@ -35,9 +35,9 @@ async function fetchData() {
   footerText.textContent = data.bio;
 
   const particlesColor = data.particles.color;
-  const songName = data.song.file;
+  const song = data.song;
 
-  setMusic(songName);
+  setMusic(song);
   setFireColor(particlesColor);
   setCssVariables(particlesColor);
 
