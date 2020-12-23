@@ -29,7 +29,7 @@ async function fetchData() {
   const mainText = document.querySelector(".main-text");
   const footerText = document.querySelector(".footer-text");
   const loading = document.querySelector(".loading");
-  src = "../src/assets/The Afterlife - PinOut OST.mp3";
+
   headerText.textContent = data.ocupation;
   mainText.textContent = data.title;
   footerText.textContent = data.bio;
@@ -49,13 +49,19 @@ async function fetchData() {
   loading.classList.add("hidden");
 }
 
-function setMusic(songName) {
+function setMusic(song) {
+  const songName = song.name;
+  const songFile = song.file;
+
   const songPath =
     "https://github.com/LaksCastro/lakscastro.github.io/raw/develop/src/assets/music/";
 
   const audioPlayer = document.querySelector("#music");
+  const songLabel = document.querySelector(".song-label");
 
-  audioPlayer.setAttribute("src", songPath + songName);
+  audioPlayer.setAttribute("src", songPath + songFile);
+
+  songLabel.innerText += songName;
 }
 
 function getRgbaFromAny(color, alpha) {
