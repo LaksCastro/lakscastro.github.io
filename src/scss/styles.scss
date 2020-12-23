@@ -6,7 +6,7 @@
   outline: none;
   -webkit-tap-highlight-color: transparent;
   list-style: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Quantico", sans-serif;
 }
 
 audio {
@@ -38,7 +38,9 @@ a {
 .header-photo {
   display: flex;
   align-items: center;
-  p {
+
+  .song-label {
+    color: var(--light-text-color);
     animation: fire 1s ease-in-out 0s infinite alternate;
   }
 
