@@ -35,7 +35,9 @@ async function fetchData() {
   footerText.textContent = data.bio;
 
   const particlesColor = data.particles.color;
+  const songName = data.song.name;
 
+  setMusic(songName);
   setFireColor(particlesColor);
   setCssVariables(particlesColor);
 
@@ -45,6 +47,10 @@ async function fetchData() {
 
   loading.classList.remove("visible");
   loading.classList.add("hidden");
+}
+
+function setMusic(){
+  
 }
 
 function getRgbaFromAny(color, alpha) {
