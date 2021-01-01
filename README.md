@@ -1,5 +1,4 @@
 <p align="center">
-  <img src="./src/assets/logo.png" width="150">
   <h1 align="center">Portfolio</h1>
   <p align="center">This a repository that manage portfolio code, feel free to use as way that you want! :)</p>
   <p align="center">
