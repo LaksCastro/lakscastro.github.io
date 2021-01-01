@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="./src/assets/images/logo.png" width="150">
   <h1 align="center">Portfolio</h1>
   <p align="center">This a repository that manage portfolio code, feel free to use as way that you want! :)</p>
   <p align="center">
@@ -33,5 +34,5 @@ This animation is built in HTML5 Canvas Engine and Factory Functions Pattern!
 </p>
 <p align="center">This portfolio <a href="https://github.com/LaksCastro/endless-gradients/blob/master/LICENSE.md">is MIT licensed 💖</a></p>
 <p align="center">
-  <img src="./src/assets/logo.png" width="35" />
+  <img src="./src/assets/images/logo.png" width="35" />
 </p>
